@@ -1,0 +1,54 @@
+% \documentclass[oneside]{article}
+\documentclass[12pt, oneside]{article}
+
+\title{Quantum Mechanics Notes}
+\author{Orgho Neogi}
+\date{}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\makeatletter
+
+\usepackage{graphicx}
+
+\usepackage{float}
+
+\usepackage[colorlinks=true]{hyperref}
+
+\usepackage{enumitem}
+
+\usepackage{epigraph}
+
+\usepackage{csquotes}
+
+\usepackage[english]{babel}
+
+\usepackage{amsthm,thmtools}
+\usepackage[nottoc]{tocbibind}
+
+\usepackage{caption}
+
+\usepackage{longtable}
+
+\usepackage{listings}
+\lstset{
+basicstyle=\small\ttfamily,
+columns=flexible,
+breaklines=true
+}
+
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+
+\setlength{\parskip}{1em}
+% \renewcommand{\baselinestretch}{2.0}
+% \usepackage[margin=1.2in]{geometry}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\include{src/day1}
+
+\end{document}
