@@ -1,1 +1,150 @@
 \section{Day 1}
+
+\subsection{Logistical Details}
+
+\textbf{Class Website:} \url{www.physics.uiowa.edu/~cpryor/5741}
+
+\textbf{Class Chat:} \url{www.mathim.com/UI-P5741}
+
+\noindent \textbf{Class Grading:}
+
+\begin{enumerate}
+  \item \textbf{Homework -} $20\%$
+  \item \textbf{Midterms -} $20\%$ each
+  \item \textbf{Finals -} $40\%$
+\end{enumerate}
+
+Usually homework is assigned each wednesday and is due the next wednesday by 5:00 pm. Homework must be turned in electronically, either as a scanned copy of handwritten work or as a \LaTeX{} document. Homework is self graded and solutions will be put up by 6:00 pm the day homework is due. We have $2$ days to turn in the graded version of our homework.
+
+There will be $2$ in class midterms and $1$ final examination. Both midterms and finals will have between $2$ and $3$ problems. The problems will generally be slightly changed versions of the homework problems. Each problem will be worth $10$ points. There will also be short answers worth $2$ points each. There will be $5$ short answers per midterm and $10$ for the finals. Short answers test fundamentals that should already be known and don't require justification.
+
+\subsection{Probabilistic Interpretation}
+
+Electromagnetism tells us that the probabilistic interpretation of quantum mechanics is unavoidable. The book starts with the Stern-Gerlach experiment but two things that lead us more fundamentally to quantum mechanics:
+
+\begin{enumerate}
+  \item Planck Black Body Experiment
+  \item Einstein Photo Electric Effect
+\end{enumerate}
+
+In both cases, energy comes in discrete packets.
+
+\begin{equation}
+  E = N\hbar\omega \label{eq:energyQ}
+\end{equation}
+
+The black body experiment was basically a curve fit since if we didn't treat it as packets then things would cool almost immediately which empirically isn't true. Therefore, Planck essentially fixed things by applying a mathematical patch.
+
+The photoelectric effect forces the probabilistic interpretation since if it weren't any wavelength would work to knock electrons off. Instead Einstein said that charge was quantized.
+
+\subsection{Classical EM Wave}
+
+\begin{align}
+  \vec{E}(\vec{r}, t) = \begin{bmatrix}
+                          E_x(\vec{r}, t) \\
+                          E_y(\vec{r}, t) \\
+                          0
+                        \end{bmatrix}
+\end{align}
+
+Where
+
+\begin{align}
+  E_x(\vec{r}, t) &= E_{x}^{0}\cos{(kz - \omega t + \alpha x)} \\
+  E_y(\vec{r}, t) &= E_{y}^{0}\cos{(kz - \omega t + \alpha y)}  \\
+  k &= \frac{2 \pi}{\lambda}
+\end{align}
+
+These are obviously real values because they can be measured but we can represent them as functions that span the complex space as such
+
+\begin{align}
+  E_x(\vec{r}, t) &= E_{x}^{0}e^{i \lambda x}e^{ikz - i \omega t} \\
+  E_y(\vec{r}, t) &= E_{y}^{0}e^{i \lambda y}e^{ikz - i \omega t}
+\end{align}
+
+\subsection{Polarization}
+
+\begin{align}
+  \text{(1)} &&& E_y = 0 && \text{x-polarized} \\
+  \text{(2)} &&& E_x = 0 && \text{y-polarized} \\
+  \text{(3)} &&& E_x = E_y && \text{polarized at } 45^{\circ} \\
+  \text{(4)} &&& E_y = e^{i \frac{\pi}{2}}E_x && \text{circular-polarized}
+\end{align}
+
+\textbf{Energy Density:}
+
+\begin{equation}
+  E(\vec{r}, t) = E_0[\abs{E_x}^{2} \cos{kx - \omega t + \alpha_x}^{2} +\abs{E_y}^{2} \cos{ky - \omega t + \alpha_y}^{2}]
+\end{equation}
+
+If we integrate over $ v >> \lambda^{3}$ we get total Energy
+
+\begin{equation}
+  E_{tot} = \int_{v} d^{2}r E(\vec{r}, t) = E_0(\abs{E_x}^2 + \abs{E_y}^2)\frac{1}{2}v = \frac{1}{2}E_0\abs{E}^2v
+\end{equation}
+
+Suppose we take a wave symmetric about x and y, propagating along z, and pass it through a polarizing filter such that
+
+\begin{equation}
+  E_x = E_y = E \rightarrow E_y = E \quad E_y = 0
+\end{equation}
+
+Before the wave passes through filter
+
+\begin{equation}
+  E_{tot} = N \hbar \omega \tag{\ref{eq:energyQ}}
+\end{equation}
+
+and after
+
+\begin{equation}
+  E_{tot} = \frac{N}{2} \hbar \omega
+\end{equation}
+
+It is not possible to have half a photon and the frequency doesn't change after the filter, so that must mean that only half the number of photons get through the filter. Which photons go through the filter appears random. This leads us to the probabilistic interpretation since the filter has the predict the filter otherwise.
+
+We haven't yet ruled out the internal state argument, it will be ruled out next semester through Bells theorem.
+
+In general, the probability of passing polarizer is energy after divided by energy before.
+
+Real quantum mechanics work with creating states; it is merely an illusion that things look classical at normal scales.
+
+Classical:
+
+\begin{align}
+  E_{tot} = \frac{E_0}{2}\abs{E}^2v &&\text{is illusion}
+\end{align}
+
+Quantum:
+
+\begin{align}
+  E_{tot} = N \hbar \omega &&\text{Governs world microscopically}\tag{\ref{eq:energyQ}}
+\end{align}
+
+The results have to agree macroscopically, so we can set them equal to each other, leading to
+
+\begin{equation}
+  \abs{E}^2 \frac{E_0v}{2\hbar\omega} = 1
+\end{equation}
+
+\subsection{Bra-Ket Notaion}
+
+\begin{equation}
+  \ket{\psi} = \begin{bmatrix}
+                  \psi_x \\
+                  \psi_y
+                \end{bmatrix}
+\end{equation}
+
+The simples possible quantum system
+
+\begin{align}
+  \psi_x &= \sqrt{\frac{E_0v}{2\hbar\omega}} E_x \\
+  \psi_y &= \sqrt{\frac{E_0v}{2\hbar\omega}} E_y
+\end{align}
+
+This implies
+
+\begin{align}
+  \abs{\psi_x}^2 + \abs{\psi_y}^2 = 1 && \text{true regardless of volume}
+\end{align}
