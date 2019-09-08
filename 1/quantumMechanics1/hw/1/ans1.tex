@@ -1,0 +1,438 @@
+% \documentclass[oneside]{article}
+\documentclass[12pt, oneside]{article}
+
+\title{PHYS:5741 \\Problem Set 1 \\Due Wednesday, September 4}
+\author{Orgho Neogi}
+\date{}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\makeatletter
+
+\usepackage{graphicx}
+
+\usepackage{float}
+
+\usepackage[colorlinks=true]{hyperref}
+
+\usepackage{enumitem}
+
+\usepackage{epigraph}
+
+\usepackage{csquotes}
+
+\usepackage[english]{babel}
+
+\usepackage{amsthm,thmtools}
+\usepackage[nottoc]{tocbibind}
+
+\usepackage{caption}
+
+\usepackage{longtable}
+
+\usepackage{physics}
+
+\usepackage{listings}
+\lstset{
+basicstyle=\small\ttfamily,
+columns=flexible,
+breaklines=true
+}
+
+\newenvironment{answer}
+  {\vspace*{0.2cm} \rule{12cm}{0.02cm} \vspace*{0.2cm}}
+  {\vspace*{0.2cm}}
+
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+
+\setlength{\parskip}{1em}
+% \renewcommand{\baselinestretch}{2.0}
+% \usepackage[margin=1.2in]{geometry}
+
+\begin{document}
+
+\maketitle
+
+For photons propagating in the z-direction the linearly polarized states polarized in the x and y directions are
+
+\begin{align*}
+  \ket{x} = \begin{bmatrix}1 \\  0\end{bmatrix} \; \ket{y} = \begin{bmatrix}0 \\  1\end{bmatrix}
+\end{align*}
+
+\noindent and the circularly polarized photon states are
+
+\begin{align*}
+  \ket{R} = \frac{1}{\sqrt{2}}\begin{bmatrix}1 \\  i\end{bmatrix} \; \ket{L} = \frac{1}{\sqrt{2}}\begin{bmatrix}1 \\  -i\end{bmatrix}
+\end{align*}
+
+\begin{enumerate}
+  \item
+  \begin{enumerate}
+    \item Write down a basis that is neither plane nor circularly polarized \label{basis}
+
+    \begin{answer}
+      \begin{align*}
+        \ket{a} = \begin{bmatrix}1 \\  0\end{bmatrix} \; \ket{b} = \frac{1}{\sqrt{2}}\begin{bmatrix}1 \\  1\end{bmatrix}
+      \end{align*}
+
+      A basis is formed if the set of vectors are linearly independent. This can be checked by writing it as a matrix
+
+      \begin{align*}
+        M = \begin{bmatrix}&1 &\frac{1}{\sqrt{2}}\\ &0 &\frac{1}{\sqrt{2}}\end{bmatrix}
+      \end{align*}
+    \end{answer}
+
+    and then taking it's determinant. If the determinant is non-zero, then it forms a basis.
+
+    \begin{align*}
+      \abs{M} &= 1 \cdot \frac{1}{\sqrt{2}} - \frac{1}{\sqrt{2}} \cdot 0 \\
+              &= \frac{1}{\sqrt{2}}
+    \end{align*}
+
+    \item Calculate the transformation matrix from the $x$, $y$ basis to the $R$, $L$ basis. \label{transformation1}
+
+    \begin{answer}
+      To go from $x$, $y$ basis to the $R$, $L$ basis, we can use
+
+      \begin{align*}
+        T_1 = \begin{bmatrix}
+                &\bra{R}\ket{x} &\bra{R}\ket{y} &\\
+                &\bra{L}\ket{x} &\bra{L}\ket{y} &
+              \end{bmatrix}
+      \end{align*}
+
+      where
+
+      \begin{align*}
+        \ket{R} &= \frac{1}{\sqrt{2}}\begin{bmatrix}1 \\  i\end{bmatrix} \\
+                &= \frac{1}{\sqrt{2}}(\begin{bmatrix}1 \\  0\end{bmatrix} + i \begin{bmatrix}0 \\  1\end{bmatrix})\\
+                &= \frac{1}{\sqrt{2}}(\ket{x} + i\ket{y})\\
+        \ket{L} &= \frac{1}{\sqrt{2}}\begin{bmatrix}1 \\  -i\end{bmatrix} \\
+                &= \frac{1}{\sqrt{2}}(\begin{bmatrix}1 \\  0\end{bmatrix} - i \begin{bmatrix}0 \\  1\end{bmatrix})\\
+                &= \frac{1}{\sqrt{2}}(\ket{x} - i\ket{y})\\
+      \end{align*}
+
+      So,
+
+      \begin{align*}
+        T_1 = \frac{1}{\sqrt{2}}\begin{bmatrix}
+                                  &1 &-i &\\
+                                  &1 &i &
+                                \end{bmatrix}
+      \end{align*}
+    \end{answer}
+
+    \item Calculate the transformation matrix from the $R$, $L$ basis to the basis you cooked up in part \ref{basis}. \label{transformation2}
+
+    \begin{answer}
+      To go from $R$, $L$ basis to the $a$, $b$ basis, we can use
+
+      \begin{align*}
+        T_2 = \begin{bmatrix}
+                &\bra{a}\ket{R} &\bra{a}\ket{L} &\\
+                &\bra{b}\ket{R} &\bra{b}\ket{L} &
+              \end{bmatrix}
+      \end{align*}
+
+      where
+
+      \begin{align*}
+        \ket{a} &= \begin{bmatrix}1 \\  0\end{bmatrix} \\
+                &= \frac{1}{\sqrt{2}}\cdot\frac{1}{\sqrt{2}}\begin{bmatrix}1 \\  i\end{bmatrix} + \frac{1}{\sqrt{2}}\cdot\frac{1}{\sqrt{2}}\begin{bmatrix}1 \\  -i\end{bmatrix})\\
+                &= \frac{1}{\sqrt{2}}\ket{R} + \frac{1}{\sqrt{2}}\ket{L}\\
+        \ket{b} &= \frac{1}{\sqrt{2}}\begin{bmatrix}1 \\  1\end{bmatrix}\\
+                &= \frac{1 - i}{2}\cdot\frac{1}{\sqrt{2}}\begin{bmatrix}1 \\  i\end{bmatrix} + \frac{1 + i}{2}\cdot\frac{1}{\sqrt{2}}\begin{bmatrix}1 \\  -i\end{bmatrix})\\
+                &= \frac{1-i}{2}\ket{R} + \frac{1+i}{2}\ket{L}
+      \end{align*}
+
+      So,
+
+      \begin{align*}
+        T_2 = \begin{bmatrix}
+                &\frac{1}{\sqrt{2}} &\frac{1}{\sqrt{2}} &\\
+                &\frac{1+i}{2} &\frac{1-i}{2} &
+              \end{bmatrix}
+      \end{align*}
+
+    \end{answer}
+
+    \item Calculate the transformation matrix from the $x$, $y$ basis to the basis in part \ref{basis},and show that it is the product of the matrices calculated in parts \ref{transformation1} and \ref{transformation2}. In which order must you multiply these matrices?
+
+    \begin{answer}
+      To go from $x$, $y$ basis to the $a$, $b$ basis, we can use
+
+      \begin{align*}
+        T_3 = \begin{bmatrix}
+                &\bra{a}\ket{x} &\bra{a}\ket{y} &\\
+                &\bra{b}\ket{x} &\bra{b}\ket{y} &
+              \end{bmatrix}
+      \end{align*}
+
+      where
+
+      \begin{align*}
+        \ket{a} &= \begin{bmatrix}1 \\  0\end{bmatrix} \\
+                &= 1\begin{bmatrix}1 \\  0\end{bmatrix} + 0\begin{bmatrix}0 \\ 1\end{bmatrix})\\
+                &= 1\ket{x} + 0\ket{y}\\
+        \ket{b} &= \frac{1}{\sqrt{2}}\begin{bmatrix}1 \\  1\end{bmatrix}\\
+                &= \frac{1}{\sqrt{2}}\begin{bmatrix}1 \\  0\end{bmatrix} + \frac{1}{\sqrt{2}}\begin{bmatrix}0 \\  1\end{bmatrix})\\
+                &= \frac{1}{\sqrt{2}}\ket{x} + \frac{1}{\sqrt{2}}\ket{y}
+      \end{align*}
+
+      So,
+
+      \begin{align*}
+        T_3 = \begin{bmatrix}
+                &1 &0 &\\
+                &\frac{1}{\sqrt{2}} &\frac{1}{\sqrt{2}} &
+              \end{bmatrix}
+      \end{align*}
+
+      The transformation matrix $T_3$ can also be obtained by multiplying $T_1$ and $T_2$
+
+      \begin{align*}
+        T_2 \cdot T_1 &= \begin{bmatrix} &\frac{1}{\sqrt{2}} &\frac{1}{\sqrt{2}} &\\ &\frac{1+i}{2} &\frac{1-i}{2} & \end{bmatrix} \cdot \frac{1}{\sqrt{2}}\begin{bmatrix} &1 &-i &\\ &1 &i &\end{bmatrix} \\
+        &= \begin{bmatrix}
+              &\frac{1}{\sqrt{2}}\cdot\frac{1}{\sqrt{2}}+ \frac{1}{\sqrt{2}}\cdot\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}\cdot\frac{-i}{\sqrt{2}}+ \frac{1}{\sqrt{2}}\cdot\frac{i}{\sqrt{2}} &\\
+              &\frac{1+i}{2}\cdot\frac{1}{\sqrt{2}}+ \frac{1-i}{2}\cdot\frac{1}{\sqrt{2}} & \frac{1+i}{2}\cdot\frac{-i}{\sqrt{2}}+ \frac{1-i}{2}\cdot\frac{i}{\sqrt{2}} &\\
+           \end{bmatrix}\\
+        &= \begin{bmatrix}
+            & 1 &0 &\\
+            &\frac{1}{\sqrt{2}} &\frac{1}{\sqrt{2}} &
+           \end{bmatrix}\\
+        &= T_3
+      \end{align*}
+    \end{answer}
+
+  \end{enumerate}
+
+  \item The probability that a photon in state $\ket{\psi}$ passes through an x-polarizer is the average value of a physical observable which could be called ``x-polarizedness”. Write down the operator, $P_x$, corresponding to this observable.
+
+  \begin{answer}
+    \begin{align*}
+      P_x = \begin{bmatrix}
+              & 1 &0 &\\
+              &0  &0 &
+            \end{bmatrix}
+    \end{align*}
+  \end{answer}
+
+  \begin{enumerate}
+    \item Show that it is Hermitian
+
+    \begin{answer}
+      For $P_x$ to be hermitian, it has to be equal to it's own conjugate transpose. Since it has no imaginary values, $P_x^* = P_x$. Since all off diagonal values are $0$, $P_x^T = P_x$. Therefore, $P_x = P_x^\dagger$
+    \end{answer}
+
+    \item Find its eigenvalues and eigenvectors.
+
+    \begin{answer}
+      Characteristic equation:
+
+      \begin{align*}
+        0 &= \abs{P_x -\lambda \mathbb{I}}\\
+        0 &= \abs{\begin{bmatrix} &1 &0 &\\ &0 &0 & \end{bmatrix} - \begin{bmatrix} &\lambda &0 &\\ &0 &\lambda & \end{bmatrix}}\\
+        0 &= \abs{\begin{bmatrix} &1 - \lambda &0 &\\ &0 &-\lambda & \end{bmatrix}}\\
+        0 &= (1 - \lambda)\lambda\\
+        \therefore \lambda_1 &= 0 \; \; \& \; \; \lambda_2 = 1
+      \end{align*}
+
+      So,
+
+      \begin{align*}
+        \phi_1 &= \begin{bmatrix}& 0 &\\ & 1 & \end{bmatrix}\\
+        \phi_2 &= \begin{bmatrix}& 1 &\\ & 0 & \end{bmatrix}
+      \end{align*}
+
+    \end{answer}
+
+    \item Write down its representation in the form
+
+    \begin{align*}
+      \lambda_1\ket{\phi_1}\bra{\phi_1} + \lambda_2\ket{\phi_2}\bra{\phi_2}
+    \end{align*}
+
+    \begin{answer}
+      \begin{align*}
+        \ket{x}\bra{x}
+      \end{align*}
+    \end{answer}
+
+    \item Verify that the probability that a photon in state $\ket{\psi}$ passes through the x-polarizer is $\bra{\psi}P_x\ket{\psi}$
+
+    \begin{answer}
+      Let $\ket{psi}$ be an arbitrary photon
+
+      \begin{align*}
+        \ket{\psi} = \alpha\ket{x} + \beta\ket{y}
+      \end{align*}
+
+      The probability of this photon passing an x-polarized filter is
+
+      \begin{align*}
+          &\abs{\bra{x}\ket{\psi}}^2\\
+        = &\abs{\bra{x}(\alpha\ket{x} + \beta\ket{y})}^2\\
+        = &\abs{\bra{x}\alpha\ket{x} + \bra{x}\beta\ket{y}}^2\\
+        = &\abs{\alpha\bra{x}\ket{x} + \beta\bra{x}\ket{y}}^2\\
+        = &\abs{\alpha}^2
+      \end{align*}
+
+      Using the $P_x$ operator
+
+      \begin{align*}
+          &\bra{\psi}P_x\ket{\psi}\\
+        = &(\bra{x}\alpha^* + \bra{y}\beta^*)\ket{x}\bra{x}(\alpha\ket{x} + \beta\ket{y})\\
+        = &(\bra{x}\alpha^*\ket{x} + \bra{y}\beta^*\ket{x})(\bra{x}\alpha\ket{x} + \bra{x}\beta\ket{y})\\
+        = &(\alpha^*\bra{x}\ket{x} + \beta^*\bra{y}\ket{x})(\alpha\bra{x}\ket{x} + \beta\bra{x}\ket{y})\\
+        = &\alpha^*\alpha\\
+        = &\abs{\alpha}^2
+      \end{align*}
+    \end{answer}
+  \end{enumerate}
+
+  \item A unitary operator $U$ is one satisfying
+
+  \begin{align*}
+    UU^\dagger = U^\dagger U = 1
+  \end{align*}
+
+  \begin{enumerate}
+    \item Show that if $\bra{A}\ket{A} = 1$ and $\ket{B} = U \ket{A}$ then $\bra{B}\ket{B} = 1$
+
+    \begin{answer}
+      \begin{align*}
+          &\bra{B}\ket{B}\\
+        = &\bra{A}U^\dagger U\ket{A}\\
+        = &\bra{A}1\ket{A}\\
+        = &\bra{A}\ket{A}\\
+        = &1
+      \end{align*}
+    \end{answer}
+
+    \item Show that if $H$ is Hermitian, then $e^{iH}$ is unitary
+
+    \begin{answer}
+      \begin{align*}
+          &(e^{iH})(e^{iH})^\dagger \\
+        = &(e^{iH})(e^{-iH^\dagger}) \\
+        = &e^{iH}e^{-iH} \\
+        = &e^{iH-iH} \\
+        = &e^{0} \\
+        = &1
+      \end{align*}
+    \end{answer}
+
+    \item Show that if $\ket{u_i}$ for $i=1 \dots N$ form a complete orthonormal set so that
+
+    \begin{align*}
+      \bra{u_i}\ket{u_j} = \delta_{ij}
+    \end{align*}
+
+    then the states $\ket{v_i} = U\ket{u_i}$ (for $i=1 \dots N$) also form an orthonormal set for unitary $U$.
+
+    \begin{answer}
+      \begin{align*}
+          &\bra{v_i}\ket{v_j}\\
+        = &\bra{u_i}U^\dagger U\ket{u_j}\\
+        = &\bra{u_i}1\ket{u_j}\\
+        = &\bra{u_i}\ket{u_j}\\
+        = &\delta_{ij}
+      \end{align*}
+    \end{answer}
+  \end{enumerate}
+
+  \item Show that for a finite dimensional space, for any operators $X, Y, Z$
+
+  \begin{enumerate}
+    \item $\bra{B}X^\dagger\ket{A} = \bra{A}X\ket{B}^*$
+
+    \begin{answer}
+
+    \end{answer}
+
+    \item $(X^\dagger)^\dagger = X$
+
+    \begin{answer}
+      let
+
+      \begin{align*}
+        X &= \begin{bmatrix}
+                a_{11} & a_{12} & \dots  & a_{1j} &\\
+                a_{21} & \ddots &        & \vdots &\\
+                \vdots &        & \ddots & \vdots &\\
+                a_{i1} & \dots  &  \dots & a_{ij} &
+             \end{bmatrix}\\
+        X^\dagger &= \begin{bmatrix}
+                a_{11}^* & a_{21}^* & \dots  & a_{i1}^* &\\
+                a_{12}^*  & \ddots  &        & \vdots &\\
+                \vdots    &         & \ddots & \vdots &\\
+                a_{1j}^*  & \dots  &  \dots  & a_{ij}^* &
+            \end{bmatrix}\\
+        (X^\dagger)^\dagger &= \begin{bmatrix}
+                a_{11} & a_{12} & \dots  & a_{1j} &\\
+                a_{21} & \ddots &        & \vdots &\\
+                \vdots &        & \ddots & \vdots &\\
+                a_{i1} & \dots  &  \dots & a_{ij} &
+             \end{bmatrix}\\
+      \end{align*}
+    \end{answer}
+
+    \item $(XY)^\dagger = Y^\dagger X^\dagger$
+
+    \begin{answer}\label{daggerProof}
+      Lets assume the existence of 2 wavefunctions $\bra{\psi_1}$ and $\ket{\psi_2}$
+
+      \begin{align*}
+          &\bra{\psi_1}(XY)^\dagger\ket{\psi_2}\\
+        = &\bra{\psi_2}XY\ket{\psi_1}^*\\
+        = &\sum_c\bra{\psi_2}X\ket{c}^*\bra{c}Y\ket{\psi_1}^*\\
+        = &\sum_c\bra{c}X^\dagger\ket{\psi_2}\bra{\psi_1}Y^\dagger\ket{c}\\
+        = &\sum_c\bra{\psi_1}Y^\dagger\ket{c}\bra{c}X^\dagger\ket{\psi_2}\\
+        = &\bra{\psi_1}Y^\dagger X^\dagger\ket{\psi_2}\\
+      \end{align*}
+    \end{answer}
+
+    \item $(XYZ)^\dagger = Z^\dagger Y^\dagger X^\dagger$
+
+    \begin{answer}
+      Assuming answer from part \ref{daggerProof}.Let,
+      \begin{align*}
+        A &= XY\\
+        B &= Z\mathbb{I}\\
+        \therefore (XYZ)^\dagger &= (AB)^\dagger\\
+        &= B^\dagger A^\dagger\\
+        &= (Z\mathbb{I})^\dagger (XY)^\dagger \\
+        &= \mathbb{I}^\dagger Z^\dagger Y^\dagger X^\dagger\\
+        &= Z^\dagger Y^\dagger X^\dagger\\
+      \end{align*}
+    \end{answer}
+
+    \item $(\ket{B}\bra{A})^\dagger = \ket{A}\bra{B}$
+
+    \begin{answer}
+      \begin{align*}
+        \ket{A}\bra{B} &=\begin{bmatrix}
+                            a_1b_1 & a_1b_2 & \dots  & a_1b_i &\\
+                            a_2b_1 & a_2b_2 & \dots  & a_2b_i &\\
+                            \vdots & \vdots & \ddots & \vdots &\\
+                            a_ib_1 & a_ib_2 &  \dots & a_ib_i &
+                         \end{bmatrix}\\
+         \ket{B}\bra{A} &=\begin{bmatrix}
+                             b_1a_1 & b_1a_2 & \dots  & b_1a_i &\\
+                             b_2a_1 & b_2a_2 & \dots  & b_2a_i &\\
+                             \vdots & \vdots & \ddots & \vdots &\\
+                             b_ia_1 & b_ia_2 &  \dots & b_ia_i &
+                          \end{bmatrix}\\
+          (\ket{B}\bra{A})^\dagger &=\begin{bmatrix}
+                                      b_1a_1 & b_2a_1 & \dots  & b_ia_1 &\\
+                                      b_1a_2 & b_2a_2 & \dots  & b_ia_2 &\\
+                                      \vdots & \vdots & \ddots & \vdots &\\
+                                      b_1a_i & b_2a_i &  \dots & b_ia_i &
+                                   \end{bmatrix}\\
+      \end{align*}
+    \end{answer}
+
+  \end{enumerate}
+\end{enumerate}
+
+\end{document}
