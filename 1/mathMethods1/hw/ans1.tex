@@ -67,18 +67,46 @@ breaklines=true
   \end{equation*}
 
     \begin{answer}
-
+      \begin{align*}
+        e^{z_1}e^{z2} &= \sum_{i=0}^{\infty} \frac{z_1^i}{i!} \sum_{j=0}^{\infty} \frac{z_2^j}{j!} &&& \text{Definition of exponential} \\
+         &= \sum_{k=0}^{\infty}\sum_{l=0}^{k} \frac{z_1^l}{l!}\frac{z_2^{k-l}}{(k-l)!} &&& \text{Cauchy product}\\
+         &= \sum_{k=0}^{\infty} \frac{1}{k!} \sum_{l=0}^{k} \frac{k!}{l!(k-l)!}z_1^lz_2^{k-l} \\
+         &= \sum_{k=0}^{\infty} \frac{(z_1 + z_2)^k}{k!} &&& \text{Binomial theorem} \\
+         &= e^{z_1 + z_2} &&& \text{Definition of exponential} \\
+      \end{align*}
     \end{answer}
 
   \item Find the real and imaginary parts of $e^z$
 
     \begin{answer}
 
+      $z \in \mathbb{C}$, so $z$ can be written as $z = x + iy$, where $x, y \in \mathbb{R}$.
+
+      \begin{align*}
+        &e^z \\
+        = &e^{x + iy} \\
+        = &e^{x}e^{iy} \\
+        = &e^{x}(\cos(y) + i\sin(y)) \\
+        = &e^{x}\cos(y) + ie^{x}\sin(y)
+      \end{align*}
+
+      So, the real part is $e^{x}\cos(y)$ and the imaginary part is $e^{x}\sin(y)$
     \end{answer}
 
   \item Let $f(z)$ be a complex function of a complex variable. Show that $f(z)f(z)^*$ is always real and non-negative.
 
     \begin{answer}
+
+      Since $f(z)$ is a complex function, $f(z)$ can be written as
+        \begin{align*}
+          f(z) &= x + iy \\
+          f(z)^* &= x - iy\\
+          \therefore f(z)f(z)^* & = (x + iy)(x - iy)\\
+          &= x^2 -xiy +iyx -i^2y^2 \\
+          &= x^2 +y^2
+        \end{align*}
+
+    $f(z)f(z)^*$ is real because there is no $i$ when the answer is simplified and it is always non negative since it is a sum of squares.
 
     \end{answer}
 
@@ -88,9 +116,38 @@ breaklines=true
     P(z) = z^2 + 3z + 12
   \end{equation*}
 
+
   Use complex arithmetic to verify that the polynomial is recovered by multiplying the factors.
 
     \begin{answer}
+
+      Quadratic Formula:
+
+      For equation $ax^2 + bx + c$,
+
+      \begin{equation*}
+        x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+      \end{equation*}
+
+      So,
+
+      \begin{align*}
+        z &= \frac{-3 \pm \sqrt{3^2 - 4\cdot1\cdot12}}{2\cdot1} \\
+          &= \frac{-3 \pm \sqrt{9 - 48}}{2}\\
+          &= \frac{-3 \pm \sqrt{-39}}{2}\\
+          &= \frac{-3 \pm i\sqrt{39}}{2}\\
+          &= \frac{-3 - i\sqrt{39}}{2} \& \frac{-3 + i\sqrt{39}}{2}
+      \end{align*}
+
+      The factors are $(z + \frac{3 + i\sqrt{39}}{2})$ and $(z + \frac{3 - i\sqrt{39}}{2})$.If the factors are multiplied together we should get back to the original polynomial
+
+      \begin{align*}
+        P(z) &= (z + \frac{3 + i\sqrt{39}}{2})(z + \frac{3 - i\sqrt{39}}{2})\\
+             &= z^2 + \frac{3-i\sqrt{39}}{2}z + \frac{3 + i\sqrt{39}}{2}z + (\frac{3 + i\sqrt{39}}{2})(\frac{3 - i\sqrt{39}}{2})\\
+             &= z^2 + \frac{3z - i\sqrt{39}z + 3z + i\sqrt{39}z}{2} + \frac{9 + 3i\sqrt{39} - 3i\sqrt{39} + 39}{4}\\
+             &= z^2 + \frac{6z}{2} + \frac{48}{4}\\
+             &= z^2 + 3z + 12
+      \end{align*}
 
     \end{answer}
 
@@ -102,12 +159,28 @@ breaklines=true
 
     \begin{answer}
 
+      \begin{align*}
+        &\frac{10+i5}{7-i6}\\
+        = &\frac{10+i5}{7-i6}\cdot\frac{7+i6}{7+i6}\\
+        = &\frac{70 + i35 + i60 + i^2\cdot30}{7^2 -i6\cdot7 + 7\cdot i6 -i^2\cdot6^2}\\
+        = &\frac{40+95i}{49+36}\\
+        =&\frac{40+95i}{85}\\
+        =&\frac{8}{17} + \frac{19}{17}i
+      \end{align*}
+
+      So, the real part is $\frac{8}{17}$ and the imaginary part is $\frac{19}{17}$
     \end{answer}
 
   \item Find the modulus and argument of $cos(ix)$
 
     \begin{answer}
 
+      \begin{align*}
+        \cos(ix) &= \cosh(x)\\
+                 &= \frac{e^x+e^{-x}}{2}
+      \end{align*}
+
+      So, $\cos(ix)$ has only a real part, which means that the modulus is $\frac{e^x+e^{-x}}{2}$ and the argument is 0 since the angle $\theta$ is 0.
     \end{answer}
 
 
