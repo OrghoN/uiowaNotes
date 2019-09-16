@@ -1,0 +1,282 @@
+% \documentclass[oneside]{article}
+\documentclass[12pt, oneside]{article}
+
+\title{PHYS:5741 \\Problem Set 2 \\Due Wednesday, September 11}
+\author{Orgho Neogi}
+\date{}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\makeatletter
+
+\usepackage{graphicx}
+
+\usepackage{float}
+
+\usepackage[colorlinks=true]{hyperref}
+
+\usepackage{enumitem}
+
+\usepackage{epigraph}
+
+\usepackage{csquotes}
+
+\usepackage[english]{babel}
+
+\usepackage{amsthm,thmtools}
+\usepackage[nottoc]{tocbibind}
+
+\usepackage{caption}
+
+\usepackage{longtable}
+
+\usepackage{physics}
+
+\usepackage{listings}
+\lstset{
+basicstyle=\small\ttfamily,
+columns=flexible,
+breaklines=true
+}
+
+\newenvironment{answer}
+  {\vspace*{0.2cm} \rule{12cm}{0.02cm} \vspace*{0.2cm}}
+  {\vspace*{0.2cm}}
+
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+
+\setlength{\parskip}{1em}
+% \renewcommand{\baselinestretch}{2.0}
+% \usepackage[margin=1.2in]{geometry}
+
+\begin{document}
+
+\maketitle
+
+  \begin{enumerate}
+    \item Suppose a $2 \times 2$ matrix $X$ (not necessarily Hermitian or unitary) is written as
+
+    \begin{align*}
+      X = a_0 + \boldsymbol{\sigma \cdot a},
+    \end{align*}
+
+    Where $a_0$ and $a_{1,2,3}$ are numbers
+
+    \begin{enumerate}
+      \item How are $a_0$ and $a_k$($k=1,2,3$) related to Tr($X$) and Tr($\sigma_k X$)?
+
+      \begin{answer}
+        \begin{align*}
+          \Tr(X) &= a_0\Tr(1) + \sum_l\Tr(\sigma_l)a_l\\
+                 &= 2a_0\\
+          \Tr(\sigma_kX)&= a_0\Tr(\sigma_k) + \sum_l\Tr(\sigma_k\sigma_l)a_l\\
+                        &= \frac{1}{2}\sum_l\Tr(\sigma_k\sigma_l + \sigma_l\sigma_k)a_l\\
+                        &= \sum_l\delta_{kl}\Tr(1)a_l\\
+                        &= 2a_k
+        \end{align*}
+      \end{answer}
+
+      \item Obtain $a_0$ and $a_k$ in terms of the matrix elements $X_{ij}$
+
+      \begin{answer}
+        \begin{align*}
+          a_0 &= \frac{X_{11}+X_{22}}{2}\\
+          a_1 &= \frac{X_{12}+X_{21}}{2}\\
+          a_2 &= \frac{i(X_{12}-X_{21})}{2}\\
+          a_3 &= \frac{X_{11}-X_22}{2}\\
+        \end{align*}
+      \end{answer}
+    \end{enumerate}
+
+    \item The Hamiltonian operator for a two-state system is given by
+
+    \begin{align*}
+      H = a(\ket{1}\bra{1} - \ket{2}\bra{2} + \ket{1}\bra{2} + \ket{2}\bra{1})
+    \end{align*}
+
+    where $a$ is a number with the dimensions of energy. Find the energy eigenvalues and corresponding energy eigenkets (as linear combinations of $\ket{1}$ and $\ket{2}$)
+
+    \begin{answer}
+      \begin{align*}
+        H &= \begin{bmatrix}
+                & a & a  & \\
+                & a & -a & \\
+              \end{bmatrix}
+      \end{align*}
+
+      Characteristic equation:
+
+      \begin{align*}
+        0 &= (a - \lambda)(-a - \lambda) - a^2\\
+        0 &= \lambda^2 - 2a^2 \\
+        \therefore \lambda &= a\sqrt{2} \quad \& \; \; -a\sqrt{2}
+      \end{align*}
+
+      For $\lambda = a\sqrt{2}:$
+
+      \begin{align*}
+        (1 - \sqrt{2})x_1 + x_2 = 0
+      \end{align*}
+
+      For $\lambda = -a\sqrt{2}:$
+
+      \begin{align*}
+        (1 + \sqrt{2})x_1 + x_2 = 0
+      \end{align*}
+
+      Where $x_1$ \& $x_2$ are the 2 elements of the eigenvector. So, eigenkets are
+
+      \begin{align*}
+        \sqrt{\frac{1}{4-2\sqrt{2}}}\begin{bmatrix}
+                                   & 1 &\\
+                                   & \sqrt{2} - 1
+                                   \end{bmatrix}
+                                   \quad \& \; \;
+         \sqrt{\frac{1}{4+2\sqrt{2}}}\begin{bmatrix}
+                                    & -1 &\\
+                                    & \sqrt{2} + 1
+                                    \end{bmatrix}
+      \end{align*}
+
+      respectively
+
+    \end{answer}
+
+    \item A certain observable in quantum mechanics has a $3 \times 3$ matrix representation as follows:
+
+    \begin{align*}
+      \frac{1}{\sqrt{2}}\begin{bmatrix}
+                          & 0 & 1 & 0 & \\
+                          & 1 & 0 & 1 & \\
+                          & 0 & 1 & 0 & \\
+                        \end{bmatrix}
+    \end{align*}
+
+    \begin{enumerate}
+      \item Find the normalized eigenvectors of this observable and the corresponding eigenvalues. Is there any degeneracy?
+
+      \begin{answer}
+        Characteristic Equation:
+        \begin{align*}
+          0 &= -\lambda^3 -2(-\lambda)(\frac{1}{\sqrt{2}})^2\\
+          0 &= -\lambda(1-\lambda)^2 \\
+          \therefore \lambda &= 0 \quad \& \quad 1 \quad \& \; \; -1
+        \end{align*}
+
+        So, there is no degeneracy. The eigenvectors are:
+        \begin{align*}
+          \frac{1}{\sqrt{2}}\begin{bmatrix}
+                              & -1 & \\
+                              & 0  & \\
+                              & 1  & \\
+                            \end{bmatrix}
+                            \; \; \& \quad
+          \frac{1}{2}\begin{bmatrix}
+                              & 1 & \\
+                              & \sqrt{2}  & \\
+                              & 1  & \\
+                            \end{bmatrix}
+                            \; \; \& \quad
+          \frac{1}{2}\begin{bmatrix}
+                              & 1 & \\
+                              & -\sqrt{2}  & \\
+                              & 1  & \\
+                            \end{bmatrix}
+        \end{align*}
+
+        respectively.
+      \end{answer}
+
+      \item Give a physical example where all this is relevant.
+
+      \begin{answer}
+        The eigenvectors are for a spin 1 system.
+      \end{answer}
+    \end{enumerate}
+
+    \item Consider a three-dimensional ket space. If a certain set of orthonormal kets—say, $\ket{1}$, $\ket{2}$, $\ket{3}$ --- are used as base kets, the operators A and B are represented by
+
+    \begin{align*}
+      A = \begin{bmatrix}
+            & a & 0  & 0  & \\
+            & 0 & -a & 0  & \\
+            & 0 & 0  & -a & \\
+          \end{bmatrix}
+      \quad B = \begin{bmatrix}
+                  & b & 0  & 0   & \\
+                  & 0 & 0  & -ib & \\
+                  & 0 & ib & 0   & \\
+                \end{bmatrix}
+    \end{align*}
+
+    with $a$ and $b$ both real
+
+    \begin{enumerate}
+      \item Obviously $A$ exhibits a degenerate spectrum. Does $B$ also exhibit a degenerate spectrum?
+
+      \begin{answer}
+        Characteristic equation for B:
+
+        \begin{align*}
+          0 &= (b-\lambda)(\lambda)^2-(b-\lambda)(ib)(-ib)\\
+          0 &= (b-\lambda)(\lambda^2 - b^2) \\
+          \therefore \lambda &= b \quad \& \quad b \quad \& \; \; -b
+        \end{align*}
+
+        Since $b$ repeats as an eigenvalue, they are degenerate
+      \end{answer}
+
+      \item Show that $A$ and $B$ commute.
+
+      \begin{answer}
+        \begin{align*}
+          AB &= \begin{bmatrix}
+                & a & 0  & 0  & \\
+                & 0 & -a & 0  & \\
+                & 0 & 0  & -a & \\
+              \end{bmatrix}
+          \cdot \begin{bmatrix}
+                      & b & 0  & 0   & \\
+                      & 0 & 0  & -ib & \\
+                      & 0 & ib & 0   & \\
+                    \end{bmatrix}\\
+            &= \begin{bmatrix}
+                        & ab & 0  & 0   & \\
+                        & 0 & 0  & -iab & \\
+                        & 0 & iab & 0   & \\
+                      \end{bmatrix}\\
+        BA &= \begin{bmatrix}
+                    & b & 0  & 0   & \\
+                    & 0 & 0  & -ib & \\
+                    & 0 & ib & 0   & \\
+                  \end{bmatrix}
+              \cdot \begin{bmatrix}
+                    & a & 0  & 0  & \\
+                    & 0 & -a & 0  & \\
+                    & 0 & 0  & -a & \\
+                  \end{bmatrix}\\
+                  &= \begin{bmatrix}
+                              & ab & 0  & 0   & \\
+                              & 0 & 0  & -iab & \\
+                              & 0 & iab & 0   & \\
+                            \end{bmatrix}\\
+        \end{align*}
+
+        Since $AB = BA$, $AB - BA = 0$, therefore they commute
+      \end{answer}
+
+      \item Find a new set of orthonormal kets that are simultaneous eigenkets of both $A$ and $B$. Specify the eigenvalues of $A$ and $B$ for each of the three eigenkets. Does your specification of eigenvalues completely characterize each eigenket?
+
+      \begin{answer}
+        Since A and B commute, they must share eigenvectors. Because A and B are both degenerate, the eigenvalues cannot characterize the eigenkets. One set of such simulatenout eigenkets are:
+
+        For Eigenvalues of $a$ \& $b$: $\ket{1}$
+
+        For Eigenvalues of $-a$ \& $-b$: $\frac{1}{\sqrt{2}}(\ket{2}+i\ket{3})$
+        
+        For Eigenvalues of $-a$ \& $-b$: $\frac{1}{\sqrt{2}}(\ket{2}-i\ket{3})$
+      \end{answer}
+    \end{enumerate}
+  \end{enumerate}
+
+\end{document}
