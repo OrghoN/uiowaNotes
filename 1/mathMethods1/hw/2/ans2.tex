@@ -1,0 +1,311 @@
+% \documentclass[oneside]{article}
+\documentclass[12pt, oneside]{article}
+
+\title{29:4761 - Homework Assignment \#2}
+\author{Orgho Neogi}
+\date{}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\makeatletter
+
+\usepackage{graphicx}
+
+\usepackage{float}
+
+\usepackage[colorlinks=true]{hyperref}
+
+\usepackage{enumitem}
+
+\usepackage{epigraph}
+
+\usepackage{csquotes}
+
+\usepackage[english]{babel}
+
+\usepackage{amsthm,thmtools}
+\usepackage[nottoc]{tocbibind}
+
+\usepackage{caption}
+
+\usepackage{longtable}
+
+\usepackage{physics}
+
+\usepackage{listings}
+\lstset{
+basicstyle=\small\ttfamily,
+columns=flexible,
+breaklines=true
+}
+
+\newenvironment{answer}
+  {\vspace*{0.2cm} \rule{12cm}{0.02cm} \vspace*{0.2cm}}
+  {\vspace*{0.2cm}}
+
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+
+\setlength{\parskip}{1em}
+% \renewcommand{\baselinestretch}{2.0}
+% \usepackage[margin=1.2in]{geometry}
+
+\allowdisplaybreaks
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+  \item Show that if $f_1(z) = u_1(x,y) + iv_1(x,y)$ and $f_2(z) = u_2(x,y) + iv_2(x,y)$ have continuous partial derivatives and satisfy the Cauchy-Riemann equations that $g(z) = f_1(f_2(z))$ also has continuous partial derivatives and satisfies the Cauchy-Riemann equations.
+
+  \begin{answer}
+
+    If $g(z)$ satisfies the Cauchy-Riemann equations, then it has continuous partial derivatives.
+
+    \begin{align*}
+      g(z) &= f_1(f_2(z))\\
+           &= f_1(u_2(x,y) + iv_2(x,y))\\
+           &= u_1(u_2(x,y),v_2(x,y)) + iv_1(u_2(x,y),v_2(x,y))
+    \end{align*}
+
+    Let $u = u_1(u_2(x,y),v_2(x,y))$ and $v = v_1(u_2(x,y),v_2(x,y))$
+
+    \begin{align*}
+      \frac{du}{dx} &= \frac{du_1}{du_2}\frac{du_2}{dx} +\frac{du_1}{dv_2}\frac{dv_2}{dx}\\
+      \frac{dv}{dy} &= \frac{dv_1}{du_2}\frac{du_2}{dy} +\frac{dv_1}{dv_2}\frac{dv_2}{dy}\\
+                    &= -\frac{du_1}{dv_2}\left(-\frac{dv_2}{dx}\right) +\frac{du_1}{du_2}\frac{du_2}{dx}\\
+                    &= \frac{du_1}{dv_2}\frac{dv_2}{dx}+\frac{du_1}{du_2}\frac{du_2}{dx}\\
+      \frac{dv}{dy} &= \frac{du}{dx}\\
+      \frac{du}{dy} &=\frac{du_1}{du_2}\frac{du_2}{dy} +\frac{du_1}{dv_2}\frac{dv_2}{dy}\\
+      \frac{dv}{dx} &= \frac{dv_1}{du_2}\frac{du_2}{dx} +\frac{dv_1}{dv_2}\frac{dv_2}{dx}\\
+                    &= -\frac{du_1}{dv_2}\frac{dv_2}{dy} +\frac{du_1}{du_2}\left(-\frac{du_2}{dy}\right)\\
+                    &= -\left(\frac{du_1}{dv_2}\frac{dv_2}{dy} +\frac{du_1}{du_2}\frac{du_2}{dy}\right)\\
+      \frac{du}{dy} &= -\frac{dv}{dx}
+    \end{align*}
+  \end{answer}
+
+  \item Find the real and imaginary parts of $\sin(z) = u(x,y) + iv(x,y)$ and show they are solutions of Laplace’s equation and the gradients, of each function are orthogonal, $\gradient u \cdot \gradient v = 0$.
+
+  \begin{answer}
+    \begin{align*}
+      z &= x + iy\\
+      \sin(z) &= \frac{e^{iz}-e^{-iz}}{2i}\\
+      &= \frac{e^{i(x+iy)}-e^{-i(x+iy)}}{2i}\\
+      &= \frac{e^{ix-y}-e^{-ix+y}}{2i}\\
+      &= \frac{e^{ix}e^{-y}-e^{-ix}e^{y}}{2i}\\
+      &= \frac{(\cos(x)+i\sin(x))e^{-y}-(\cos(x)-i\sin(x))e^{y}}{2i}\\
+      &= \frac{e^{-y}\cos(x)+ie^{-y}\sin(x)-e^{y}\cos(x)-ie^{y}\sin(x)}{2i}\cdot\frac{i}{i}\\
+      &= \frac{-ie^{-y}\cos(x)+e^{-y}\sin(x)+ie^{y}\cos(x)+e^{y}\sin(x)}{2}\\
+      &= \sin(x)(\frac{e^y + e^-y}{2}) + i\cos(x)(\frac{e^y - e^-y}{2})\\
+      &= \sin(x)\cosh(y) + i\cos(x)\sinh(y)\\
+    \end{align*}
+
+    So, $u = \sin(x)\cosh(y)$ and $v = \cos(x)\sinh(y)$\label{breakdown}
+
+    Laplace's equation states that $\divergence \gradient f = 0$ In this case
+
+    \begin{align*}
+      \divergence \gradient \sin(z) &= \frac{\partial^2}{\partial x^2}\sin(z) + \frac{\partial^2}{\partial y^2}\sin(z)
+    \end{align*}
+
+    \begin{align*}
+      \frac{\partial^2}{\partial x^2}\sin(z) &= \frac{\partial}{\partial x}\frac{\partial}{\partial x}\sin(z)\\
+      &= \frac{\partial}{\partial x}\frac{\partial}{\partial x}(\sin(x)\cosh(y) + i\cos(x)\sinh(y))\\
+      &= \frac{\partial}{\partial x}(\cos(x)\cosh(y) - i\sin(x)\sinh(y))\\
+      &= -\sin(x)\cosh(y) - i\cos(x)\sinh(y)\\
+    \end{align*}
+    \begin{align*}
+      \frac{\partial^2}{\partial y^2}\sin(z) &= \frac{\partial}{\partial y}\frac{\partial}{\partial y}\sin(z)\\
+      &= \frac{\partial}{\partial y}\frac{\partial}{\partial y}(\sin(x)\cosh(y) + i\cos(x)\sinh(y))\\
+      &= \frac{\partial}{\partial y}(\sin(x)\sinh(y) + i\cos(x)\cosh(y))\\
+      &= \sin(x)\cosh(y) + i\cos(x)\sinh(y)\\
+    \end{align*}
+
+    \begin{align*}
+      \divergence \gradient \sin(z) &= -\sin(x)\cosh(y) - i\cos(x)\sinh(y) + \sin(x)\cosh(y) + i\cos(x)\sinh(y)\\
+       &= 0
+    \end{align*}
+
+    % $\sin(z)$ fulfills laplaces equation
+
+    \begin{align*}
+      \gradient u &= \begin{bmatrix}
+                     & \frac{\partial}{\partial x}u & \frac{\partial}{\partial y}u &
+                     \end{bmatrix}\\
+                  &= \begin{bmatrix}
+                     & \cos(x)\cosh(y) & \sin(x)\sinh(y) &
+                     \end{bmatrix}\\
+       \gradient v &= \begin{bmatrix}
+                      & \frac{\partial}{\partial x}v & \frac{\partial}{\partial y}v &
+                      \end{bmatrix}\\
+                   &= \begin{bmatrix}
+                      & -\sin(x)\sinh(y) & \cos(x)\cosh(y) &
+                      \end{bmatrix}\\
+        \gradient u \cdot \gradient v &= \begin{bmatrix}
+           & \cos(x)\cosh(y) & \sin(x)\sinh(y) &
+           \end{bmatrix} \cdot\begin{bmatrix}
+              & -\sin(x)\sinh(y) & \\ & \cos(x)\cosh(y) &
+              \end{bmatrix}\\
+              &= \cos(x)\cosh(y)(-\sin(x)\sinh(y)) + \sin(x)\sinh(y)(\cos(x)\cosh(y))\\
+              &= -\cos(x)\cosh(y)\sin(x)\sinh(y) + \sin(x)\sinh(y)\cos(x)\cosh(y)\\
+              &=0
+    \end{align*}
+
+  \end{answer}
+
+  \item For $z = re^{i\theta} = x + iy$, let $f(z) = u(r,\theta) + iv(r,\theta)$. Derive the form of the Cauchy-Riemann equations in $r$,$\theta$ variables.
+
+  \begin{answer}
+
+    Assuming that $f(z)$ fulfills the Cauchy-Riemann equations in the first place, implying that
+
+  \begin{align*}
+      \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} \quad \quad
+      \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}
+  \end{align*}
+
+  Converting between $x,y$ basis and $r,\theta$ basis
+  \begin{align*}
+    z &= re^{i\theta}\\
+    z &= r(\cos(\theta) + i\sin(\theta))\\
+    \therefore x &= r\cos(\theta)\\
+    \therefore y &= r\sin(\theta)\\
+  \end{align*}
+
+  Differentiating to find the $r,\theta$ form of the Cauchy-Riemann equations
+
+  \begin{align*}
+    \frac{\partial u}{\partial \theta} &= \frac{\partial u}{\partial x}r\sin(\theta) - \frac{\partial u}{\partial y}r\cos(\theta)\\
+    \frac{\partial v}{\partial \theta} &= \frac{\partial v}{\partial x}r\sin(\theta) + \frac{\partial v}{\partial y}r\cos(\theta)\\
+    \frac{\partial u}{\partial r} &= \frac{\partial u}{\partial x}\cos(\theta) +\frac{\partial u}{\partial y}\sin(\theta)\\
+     &= \frac{1}{r}(\frac{\partial v}{\partial y}r\cos(\theta) +\frac{\partial v}{\partial x}r\sin(\theta))\\
+     &= \frac{1}{r}\frac{\partial v}{\partial \theta}\\
+     \frac{\partial v}{\partial r} &= \frac{\partial v}{\partial x}\cos(\theta) +\frac{\partial v}{\partial y}\sin(\theta)\\
+      &= -\frac{1}{r}(\frac{\partial u}{\partial y}r\cos(\theta) -\frac{\partial u}{\partial x}\sin(\theta))\\
+      &= -\frac{1}{r}\frac{\partial u}{\partial \theta}\\
+  \end{align*}
+
+  So,
+
+  \begin{align*}
+      \frac{\partial u}{\partial r} = \frac{1}{r}\frac{\partial v}{\partial \theta} \quad \quad
+      \frac{\partial u}{\partial \theta} = -r\frac{\partial v}{\partial r}
+  \end{align*}
+
+  \end{answer}
+
+  \item Using the definition, show that $f(z) = (a - z)/(b - z)$, has a complex derivative.
+
+  \begin{answer}
+
+    A function $f$ is differentiable at a point $z_0$ if the limit
+
+    \begin{align*}
+      \lim_{h\to0} \frac{f(z_0 + h) - f(z_0)}{h}
+    \end{align*}
+
+    exists finitely
+
+    the function $f(z) = (a - z)/(b - z)$ is differentiable if
+
+    \begin{align*}
+      \lim_{h\to0} \frac{\frac{a - z_0 - h}{b - z_0 - h} - \frac{a - z_0}{b - z_0}}{h}
+    \end{align*}
+
+    converges
+
+    \begin{align*}
+      &\lim_{h\to0} \frac{\frac{(a-z_0-h)(b-z_0) - (a-z_0)(b-z_0-h)}{(b-z_0)(b - z_0 - h)}}{h}\\
+      =&\lim_{h\to0} \frac{\frac{ah - bh}{b^2 - bz_0 -bh - bz_0 +z_0^2 + hz_0}}{h}\\
+      =&\lim_{h\to0} \frac{a - b}{b^2 - bz_0 -bh - bz_0 +z_0^2 + hz_0}\\
+      =&\frac{a - b}{b^2 - 2bz_0 +z_0^2}\\
+    \end{align*}
+
+    Since there is a finite limit, the function is complex differentiable everywhere
+  \end{answer}
+
+  \item Let $u(x,y) = ax^3 + bx^2y + cxy^2 + dy^3$. Find values of $a$, $b$, $c$, $d$ for which this function satisfies Laplace’s equation. For this $u(x,y)$ find a corresponding $v(x,y)$ such that $u(x,y)$ and $v(x,y)$ satisfy the Cauchy-Riemann equations.
+
+  \begin{answer}
+
+    Discounting the trivial case where $a,b,c,d$ are all equal to $0$, to satisfy laplaces equation, $\divergence \gradient u = 0$ So,
+
+    \begin{align*}
+      \frac{\partial^2}{\partial x^2}u + \frac{\partial^2}{\partial y^2}u &= 0\\
+      \frac{\partial^2}{\partial x^2}u &= - \frac{\partial^2}{\partial y^2}u\\
+      \frac{\partial^2}{\partial x^2}u &=\frac{\partial}{\partial x}\frac{\partial}{\partial x}u\\
+      &=\frac{\partial}{\partial x}\frac{\partial}{\partial x}(ax^3 + bx^2y + cxy^2 + dy^3)\\
+      &=\frac{\partial}{\partial x}(3ax^2+2bxy+cy^2)\\
+      &=6ax+2by\\
+      \frac{\partial^2}{\partial y^2}u &=\frac{\partial}{\partial y}\frac{\partial}{\partial y}u\\
+      &=\frac{\partial}{\partial y}\frac{\partial}{\partial y}u\\
+      &=\frac{\partial}{\partial y}\frac{\partial}{\partial y}(ax^3 + bx^2y + cxy^2 + dy^3)\\
+      &=\frac{\partial}{\partial y}(bx^2+2cxy+3dy^2)\\
+      &=2cx+6dy
+    \end{align*}
+
+    This implies that
+
+    \begin{align*}
+      6a &= -2c\\
+      c &= -3a\\
+      2b &= -6d\\
+      b &= -3d
+    \end{align*}
+
+    So one set of values that would work would be $a=1$,$b=-3$,$c=-3$,$d=1$
+    This particular version of $u(x,y) = x^3 -3x^2y -3xy^2 + y^3$
+
+    For this version of $u(x,y)$
+    \begin{align*}
+      \frac{\partial u}{\partial x} &= 3x^2-6xy-3y^2 = \frac{\partial v}{\partial y}\\
+      \frac{\partial u}{\partial y} &= 3y^2-3x^2-6xy = -\frac{\partial v}{\partial x}\\
+    \end{align*}
+
+    To find v we can integrate
+    \begin{align*}
+      v &= \int\frac{\partial v}{\partial x}\partial x\\
+        &= -\int\frac{\partial u}{\partial y}\partial x\\
+        &= -\int (3y^2-3x^2-6xy) \partial x\\
+        &= x^3 +3x^2y-3xy^2 + c_1\\
+      v &= \int\frac{\partial v}{\partial y}\partial y\\
+        &= \int\frac{\partial u}{\partial x}\partial y\\
+        &= \int(3x^2-6xy-3y^2)\partial y\\
+        &= 3x^2y-3xy^2-y^3 + c_2\\
+      \therefore v &= x^3 + 3x^2y - 3xy^2 - y^3
+    \end{align*}
+  \end{answer}
+
+  \item Calculate the integral of $f(z) = \sin(z)$ from $z=0$ to $z=1 + i$ first along the straight line paths from $z = 0$ to $z = 1$ then from $z = 1$ to $z = 1 + i$. Next calculate the integral of the same function along the straight line path from $z = 0$ to $z = 1 + i$. Show that both integrals give the same result.
+
+  \begin{answer}
+
+    As shown in answer \ref{breakdown}, $f(z) = \sin(z) = \frac{e^{ix-y}-e^{-ix+y}}{2i}$ where $x$ \& $y$ are real numbers. To first calculate the integral along he straight line paths from $z = 0$ to $z = 1$ then from $z = 1$ to $z = 1 + i$, we can break the path down as follows.
+    For the first part, $y=0$, so $z=x$ and $dz = dx$, $0\leq x \leq 1$. For the second   part, $x=1$, so $z = 1 + iy$ and $dz = idy$,$0\leq y \leq 1$.
+
+    The integral breaks down into:
+
+    \begin{align*}
+      &\int_0^1 \frac{e^{ix}-e^{-ix}}{2i} dx+ \int_0^1 \frac{e^{i-y}-e^{-i+y}}{2i}(idy)\\
+      =&\frac{1}{2i}\int_0^1 e^{ix}-e^{-ix} dx+ \frac{i}{2i} \int_0^1 e^{i-y}-e^{-i+y}dy\\
+      =&\frac{1}{2i}(-ie^{ix}-ie^{-ix})\Big|_0^{1}+ \frac{1}{2} (-e^{i-y}-e^{-i+y})\Big|_0^{1}\\
+      =&\frac{1}{2}(2-e^{i-1}-e^{1-i})\\
+      =&1-\frac{e^{i-1}+e^{1-i}}{2}\\
+      =&1-\cos(1+i)
+    \end{align*}
+
+    When integrating along the straight line $y=x$, $z=x+ix=(1+i)x$, so $dz=(1+i)dx$, $0\leq x \leq 1$. This means the integral is
+
+    \begin{align*}
+      &\int_0^{1} \frac{e^{ix-x}-e^{-ix+x}}{2i} (1+i)dx\\
+      =&\frac{1+i}{2}\int_0^{1} e^{(i-1)x}-e^{(1-i)x}dx\\
+      =&\left.\frac{1+i}{2}\left[\left(-\frac{1}{2}-\frac{i}{2}\right) e^{(i-1)x}-\left(\frac{1}{2}+\frac{i}{2}\right)e^{(1-i)x}\right]\right|_0^{1}\\
+      =&\left.-\frac{1}{2}\left(e^{(i-1)x}+e^{(1-i)x}\right)\right|_0^{1}\\
+      =&1-\frac{e^{i-1}+e^{1-i}}{2}\\
+      =&1-\cos(1+i)
+    \end{align*}
+
+  \end{answer}
+\end{enumerate}
+
+\end{document}
